@@ -1,4 +1,4 @@
-_printf()
+.SH _printf()
 
 //More info will be added here as the project continues
 
