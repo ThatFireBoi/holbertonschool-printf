@@ -13,12 +13,18 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 
 /*Character function declaration*/
-int print_char(char c);
+int print_char(va_list args);
 
 /*String function declaration*/
-int print_string(char *s);
+int print_string(va_list args);
 
 /*Integer function declaration*/
-int print_integer(int num);
+int print_integer(va_list args);
+
+typedef struct
+{
+  char specifier;
+  int (*handler)(va_list);
+} FormatHandler;
 
 #endif
