@@ -5,11 +5,11 @@
 #include "main.h"
 
 /**
+ * _printf - function that produces output according to a format
  *
+ * @format - character string containing format specifiers
  *
- *
- *
- *
+ * Return: number of characters printed (excluding the null byte), or -1 for NULL or errors
  */
 
 FormatHandler formatHandlers[] = {
@@ -52,7 +52,14 @@ int _printf(const char *format, ...)
 
 			if (!foundHandler)
 			{
-				count += write(1, &format[i - 1], 1);
+				if (format[i] == '%')
+				{
+					count += write(1, "%", 1);
+				}
+				else
+				{
+					count += write(1, "%r", 2);
+				}
 			}
 		}
 
