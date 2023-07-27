@@ -1,0 +1,74 @@
+.TH _printf.c man page
+
+.SH NAME
+
+_printf - Custom printf function implementation
+
+.SH SYNOPSIS
+
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "main.h"
+
+int _printf(const char *format, ...);
+
+.SH DESCRIPTION
+
+The _printf function is a custom implementation of the standard C library function printf, which is used to format and print data to the standard output stream.
+ This custom version supports the conversion specifiers %c, %s, %d, and %i, similar to the standard printf.
+
+.SH FORMAT HANDLERS
+
+The _printf function uses format handlers to process the conversion specifiers in the provided format string. The format handlers are defined in the FormatHandler structure:
+
+
+typedef struct {
+    char specifier;
+    int (*handler)(va_list args);
+} FormatHandler;
+
+    specifier: The character representing the conversion specifier to be handled.
+    handler: A function pointer to the specific function responsible for handling the corresponding conversion specifier.
+
+The available format handlers are as follows:
+
+    %c: Handles the %c conversion specifier by printing a single character.
+    %s: Handles the %s conversion specifier by printing a null-terminated string.
+    %d: Handles the %d conversion specifier by printing a signed integer.
+    %i: Handles the %i conversion specifier by printing a signed integer.
+
+.SH RETURN VALUE
+
+The _printf function returns the total number of characters printed (excluding the null terminator) on success. On failure, it returns -1.
+USAGE
+
+To use the _printf function, include the required headers and the main.h header file that presumably contains the definition of the FormatHandler structure and the format handlers.
+ Then, call the _printf function with the desired format string and any additional arguments:
+
+
+
+int _printf(const char *format, ...);
+
+The function accepts a format string (format) and optional additional arguments based on the format specifiers used in the string.
+ It processes the format string and prints the formatted output to the standard output stream.
+
+.SH EXAMPLES
+
+Here are some examples demonstrating how to use the _printf function:
+
+
+#include <stdio.h>
+
+int main() {
+    _printf("Hello, %s!\n", "world"); // Output: Hello, world!
+    _printf("The answer is %d.\n", 42); // Output: The answer is 42.
+    _printf("The character is '%c'.\n", 'A'); // Output: The character is 'A'.
+    _printf("Formatted: %d, %s, %c\n", 123, "example", 'X'); // Output: Formatted: 123, example, X
+    return 0;
+}
+
+.SH AUTHORS
+Jose G. Nieves Milete
+Gabriel Castro
