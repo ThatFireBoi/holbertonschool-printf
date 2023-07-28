@@ -16,6 +16,8 @@ The supported format specifiers are:
 
 If an unknown format specifier is encountered, it will be printed as %r.
 
+## Flowchart
+
 
 ![My_First_Board](https://github.com/ThatFireBoi/holbertonschool-printf/assets/127802407/f9422cde-69ce-4dc0-8255-64958618644c)
 
