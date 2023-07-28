@@ -3,11 +3,11 @@
 .TH "" "" "" "" ""
 .hy
 .PP
-\&.TH _printf.c
+\&.TH _printf function
 .PP
 \&.SH NAME
 .PP
-_printf \- Custom printf function implementation
+_printf \- function that produces output according to a format
 .PP
 \&.SH SYNOPSIS
 .PP
@@ -18,72 +18,82 @@ int _printf(const char *format, \&...);
 .PP
 \&.SH DESCRIPTION
 .PP
-The _printf function is a custom implementation of the standard C
-library function printf, which is used to format and print data to the
-standard output stream.
-This custom version supports the conversion specifiers %c, %s, %d, and
-%i, similar to the standard printf.
+The _printf function formats and prints output to the standard output
+(stdout) according to the provided format string.
+The function supports various format specifiers and can handle character
+strings, characters, integers, and default (unknown) specifiers.
 .PP
-\&.SH FORMAT HANDLERS
-.PP
-The _printf function uses format handlers to process the conversion
-specifiers in the provided format string.
-The format handlers are defined in the FormatHandler structure:
-.PP
-typedef struct { char specifier; int (*handler)(va_list args); }
-FormatHandler;
+The supported format specifiers are:
 .IP
 .nf
 \f[C]
-specifier: The character representing the conversion specifier to be handled.
-handler: A function pointer to the specific function responsible for handling the corresponding conversion specifier.
+%c: Character specifier. It expects an int argument that represents the character to be printed.
+
+%s: String specifier. It expects a char * argument containing the string to be printed.
+
+%d, %i: Integer specifiers. They expect an int argument that will be printed as a signed decimal number.
+
+%%: Percent specifier. It is used to print a literal percent symbol (\[dq]%\[dq]).
 \f[R]
 .fi
 .PP
-The available format handlers are as follows:
+If an unknown format specifier is encountered, it will be printed as %r.
+.PP
+\&.SH PARAMETERS
 .IP
 .nf
 \f[C]
-%c: Handles the %c conversion specifier by printing a single character.
-%s: Handles the %s conversion specifier by printing a null\-terminated string.
-%d: Handles the %d conversion specifier by printing a signed integer.
-%i: Handles the %i conversion specifier by printing a signed integer.
+format: The character string containing the format specifiers to be processed and printed.
 \f[R]
 .fi
 .PP
 \&.SH RETURN VALUE
 .PP
-The _printf function returns the total number of characters printed
-(excluding the null terminator) on success.
-On failure, it returns \-1.
-USAGE
-.PP
-To use the _printf function, include the required headers and the main.h
-header file that presumably contains the definition of the FormatHandler
-structure and the format handlers.
-Then, call the _printf function with the desired format string and any
-additional arguments:
-.PP
-int _printf(const char *format, \&...);
-.PP
-The function accepts a format string (format) and optional additional
-arguments based on the format specifiers used in the string.
-It processes the format string and prints the formatted output to the
-standard output stream.
+The function returns the total number of characters printed (excluding
+the null byte) if successful.
+If format is NULL, the function returns \-1.
+In case of any other errors, the return value is also \-1.
 .PP
 \&.SH EXAMPLES
 .PP
-Here are some examples demonstrating how to use the _printf function:
-.PP
 #include <stdio.h>
 .PP
-int main() { _printf(\[lq]Hello, %s!\[rq], \[lq]world\[rq]); // Output:
-Hello, world! _printf(\[lq]The answer is %d.\[rq], 42); // Output: The
-answer is 42.
-_printf(\[lq]The character is `%c'.\[rq], `A'); // Output: The character
-is `A'.
-_printf(\[lq]Formatted: %d, %s, %c\[rq], 123, \[lq]example\[rq], `X');
-// Output: Formatted: 123, example, X return 0; }
+int main() { int num = 42; char *str = \[lq]Hello, world!\[rq]; char ch
+= `A';
+.IP
+.nf
+\f[C]
+// Output: \[dq]The number is: 42\[dq]
+_printf(\[dq]The number is: %d\[rs]n\[dq], num);
+
+// Output: \[dq]String: Hello, world!\[dq]
+_printf(\[dq]String: %s\[rs]n\[dq], str);
+
+// Output: \[dq]Character: A\[dq]
+_printf(\[dq]Character: %c\[rs]n\[dq], ch);
+
+// Output: \[dq]Unknown specifier: %r\[dq]
+_printf(\[dq]Unknown specifier: %z\[rs]n\[dq]);
+
+return 0;
+\f[R]
+.fi
+.PP
+}
+.PP
+\&.SH NOTES
+.IP
+.nf
+\f[C]
+The _printf function uses the standard C library functions va_list, va_start, and va_end to handle variable argument lists.
+
+It is the caller\[aq]s responsibility to ensure that the number and types of arguments provided match the format specifiers in the format string.
+
+The function does not handle all possible format specifiers like floating\-point numbers or hexadecimal formatting. Only the specified format specifiers mentioned above are supported.
+
+The function writes the formatted output to the standard output (stdout), which is typically the terminal/console.
+\f[R]
+.fi
 .PP
 \&.SH AUTHORS Jose G.
 Nieves Milete Gabriel Castro
