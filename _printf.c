@@ -9,7 +9,7 @@
  *
  * @format - character string containing format specifiers
  *
- * Return: number of characters printed (excluding the null byte), or -1 for NULL or errors
+ * Return: number of characters printed (excluding the null byte)
  */
 
 FormatHandler formatHandlers[] = {
@@ -30,16 +30,14 @@ int _printf(const char *format, ...)
 	int foundHandler;
 
 	if (format == NULL)
-		return -1;
-
+		return (-1);
 	va_start(args, format);
-
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			while (format[++i] == ' ');
-
+			while (format[++i] == ' ')
+				;
 			foundHandler = 0;
 			for (j = 0; formatHandlers[j].specifier != '\0'; j++)
 			{
@@ -50,27 +48,22 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-
 			if (!foundHandler)
 			{
 				if (format[i] == '%')
-				{
 					count += write(1, "%", 1);
-				}
 				else
 				{
 					count += write(1, "%r", 2);
 				}
 			}
 		}
-
 		else
 		{
 			count += write(1, &format[i], 1);
 		}
 		i++;
 	}
-
 	va_end(args);
-	return count;
+	return (count);
 }
