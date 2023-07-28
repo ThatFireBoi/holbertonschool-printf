@@ -6,23 +6,19 @@
 
 /**
  * _printf - function that produces output according to a format
- *
- * @format - character string containing format specifiers
- *
+ * @format: character string containing format specifier
  * Return: number of characters printed (excluding the null byte)
  */
-
-FormatHandler formatHandlers[] = {
-	{'c', print_char},
-	{'s', print_string},
-	{'d', print_integer},
-	{'i', print_integer},
-	{'b', print_binary},
-	{'\0', NULL}
-};
-
 int _printf(const char *format, ...)
 {
+	FormatHandler formatHandlers[] = {
+		{'c', print_char},
+		{'s', print_string},
+		{'d', print_integer},
+		{'i', print_integer},
+		{'b', print_binary},
+		{'\0', NULL}
+	};
 	va_list args;
 	int count = 0;
 	int i = 0;
