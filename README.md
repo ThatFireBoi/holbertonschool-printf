@@ -1,49 +1,31 @@
-.SH _printf()
+Proyect _printf()
 
-//More info will be added here as the project continues
+ Description
+ 
+ This function is called _printf and is designed to produce formatted output according to the given format string. It's a custom implementation of the printf function in C. It supports various format specifiers for different data types like characters, strings, integers, and binary.
 
-The code will be compiled this way:
-$ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
+The supported format specifiers are:
 
-Format specifier
-Define the type of data to be printed on standard output. These are necessary when printing
-formatted output with printf() or accepting input with scanf().
+    %c: Character specifier. It expects an int argument that represents the character to be printed.
 
-%c = used for a single character
-%s = used for a string
-%% = used to return the sum of all its parameters
-%d = used for a signed decimal integer
-%i = used for a signed decimal integer
+    %s: String specifier. It expects a char * argument containing the string to be printed.
 
-Examples:
+    %d, %i: Integer specifiers. They expect an int argument that will be printed as a signed decimal number.
 
-Characters:
-_printf("%c", I);
-Prints: H
+    %%: Percent specifier. It is used to print a literal percent symbol ("%").
 
-Strings:
-_printf("%s", "welcome");
-Prints: welcome
+If an unknown format specifier is encountered, it will be printed as %r.
 
-Signed decimal integer (digit):
-_printf("%d", 5);
-Prints: 5
+Usage
 
-Signed decimal integer:
-_printf("%i", 10);
-Prints: 10
+To use this _printf function, you should include the "main.h" header in your program and call _printf with the desired format string and the corresponding arguments. The function will produce the formatted output based on the format specifiers and their respective handler functions defined in the formatHandlers array.
 
-When successful, the functions return the number of the character printed (excluding
-the null byte used to end output to string). If an output error is encountered, a 
-negative value is returned.
+Contributing
 
-Authorized functions and macros:
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-write (man 2 write)
-malloc (man 3 malloc)
-free (man 3 free)
-va_start (man 3 va_start)
-va_end (man 3 va_end)
-va_copy (man 3 va_copy)
-va_arg (man 3 va_arg)
+Please make sure to update tests as appropriate.
 
+Authors
+Jose G. Nieves Milete
+Gabriel Castro
