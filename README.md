@@ -24,6 +24,9 @@ If an unknown format specifier is encountered, it will be printed as %r.
 
 ## Usage
 
+![Screenshot from 2023-07-28 13-14-26](https://github.com/ThatFireBoi/holbertonschool-printf/assets/127802407/50aca2fb-f44c-44ec-82a3-edfcca01075c)
+
+
 To use this _printf function, you should include the "main.h" header in your program and call _printf with the desired format string and the corresponding arguments. The function will produce the formatted output based on the format specifiers and their respective handler functions defined in the formatHandlers array.
 
 ## Contributing
