@@ -16,6 +16,10 @@ The supported format specifiers are:
 
 If an unknown format specifier is encountered, it will be printed as %r.
 
+
+![My_First_Board](https://github.com/ThatFireBoi/holbertonschool-printf/assets/127802407/f9422cde-69ce-4dc0-8255-64958618644c)
+
+
 Usage
 
 To use this _printf function, you should include the "main.h" header in your program and call _printf with the desired format string and the corresponding arguments. The function will produce the formatted output based on the format specifiers and their respective handler functions defined in the formatHandlers array.
